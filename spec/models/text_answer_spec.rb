@@ -8,4 +8,13 @@ RSpec.describe TextAnswer, type: :model do
   context 'associations' do
     it { is_expected.to belong_to :question }
   end
+
+  describe '.result' do
+    let!(:question) { create(:question) }
+    let!(:text_answers) { create_list(:text_answer, 3, question: question) }
+    
+    it "returns an array of text answer" do
+      expect(TextAnswer.result).to eq text_answers
+    end
+  end
 end
