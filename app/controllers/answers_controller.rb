@@ -3,7 +3,11 @@ class AnswersController < ApplicationController
 
   def create
     @question = Question.find(question_id)
-    @answer = @question.answers.create(answer_params)
+
+    case @question.type
+    when 'TextQuestion'
+      @answer = @question.answers.create(text_answer_params)  
+    end
 
     if @answer.save
       render json: @answer, status: :created
@@ -18,7 +22,7 @@ class AnswersController < ApplicationController
       params.require(:question_id)
     end
 
-    def answer_params
+    def text_answer_params
       params.require(:answer).permit(:text_answer).merge(type: 'TextAnswer')
     end
 end
