@@ -1,4 +1,7 @@
 class Question < ActiveRecord::Base
-  validates :title, presence: true
+  extend Enumerize
+  
   has_many :answers
+  validates :title, presence: true
+  enumerize :type, in: [:TextQuestion, :MultiChoiceQuestion, :ScaleQuestion]
 end
