@@ -23,6 +23,6 @@ class AnswersController < ApplicationController
     end
 
     def text_answer_params
-      params.require(:answer).permit(:text_answer).merge(type: 'TextAnswer')
+      params.require(:answer).permit(:text_answer, :device_id).merge(type: 'TextAnswer')
     end
 end

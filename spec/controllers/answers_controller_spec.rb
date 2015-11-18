@@ -6,11 +6,12 @@ RSpec.describe AnswersController, type: :controller do
       post :create, question_id: question.id, answer: answer_params
     end
     
-    let!(:question) { create(:text_question) }
-    
-    context 'TextAnswer' do
-      context 'Success' do
-        let!(:answer_params) { attributes_for(:text_answer) }
+    describe 'TextAnswer' do
+      let!(:question) { create(:text_question) }
+      
+      context 'Success' do 
+        let!(:device) { create(:device) }
+        let!(:answer_params) { attributes_for(:text_answer, device_id: device.id ) }
         let(:expected_answer_as_json) { TextAnswer.last.to_json }
 
         it 'creates successfully an answer' do
