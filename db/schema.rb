@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151117162357) do
+ActiveRecord::Schema.define(version: 20151119160604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,10 +23,18 @@ ActiveRecord::Schema.define(version: 20151117162357) do
     t.integer  "question_id"
     t.string   "text_answer"
     t.integer  "device_id"
+    t.integer  "choice_id"
   end
 
   add_index "answers", ["device_id"], name: "index_answers_on_device_id", using: :btree
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
+
+  create_table "choices", force: :cascade do |t|
+    t.string  "name"
+    t.integer "question_id"
+  end
+
+  add_index "choices", ["question_id"], name: "index_choices_on_question_id", using: :btree
 
   create_table "devices", force: :cascade do |t|
     t.string "uuid"
