@@ -3,7 +3,7 @@ class Question < ActiveRecord::Base
   
   has_many :answers
   has_many :choices
-  
+
   validates :title, presence: true
-  enumerize :type, in: [:TextQuestion, :MultiChoiceQuestion, :ScaleQuestion]
+  enumerize :type, in: [:TextQuestion, :MultiQuestion, :ScaleQuestion]
 end
