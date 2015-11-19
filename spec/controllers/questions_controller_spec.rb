@@ -6,8 +6,19 @@ RSpec.describe QuestionsController, type: :controller do
       get :show, id: question.id
     end
 
-    context 'open text' do
-      let!(:question) { create(:question) }
+    context 'text question' do
+      let!(:question) { create(:text_question) }
+      let!(:question_as_json) { question.to_json }
+
+      it 'assigns question and renders question as json' do
+        do_request
+        expect(assigns(:question)).to match question
+        expect(response.body).to eq question_as_json
+      end
+    end
+
+    context 'multi question' do
+      let!(:question) { create(:multi_question, :with_4_choices) }
       let!(:question_as_json) { question.to_json }
 
       it 'assigns question and renders question as json' do
