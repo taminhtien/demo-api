@@ -7,4 +7,8 @@ FactoryGirl.define do
   factory :text_answer, parent: :answer, class: 'TextAnswer' do
     text_answer 'Good answer'
   end
+
+  factory :multi_answer, parent: :answer, class: 'MultiAnswer' do
+    choice
+  end
 end
