@@ -8,4 +8,7 @@ FactoryGirl.define do
 
   factory :multi_question, parent: :question, class: 'MultiQuestion' do
   end
+
+  factory :scale_question, parent: :question, class: 'ScaleQuestion' do
+  end
 end

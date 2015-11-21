@@ -11,4 +11,8 @@ FactoryGirl.define do
   factory :multi_answer, parent: :answer, class: 'MultiAnswer' do
     choice
   end
+
+  factory :scale_answer, parent: :answer, class: 'ScaleAnswer' do
+    sequence(:value) { |n| n }
+  end
 end
