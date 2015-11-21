@@ -18,7 +18,7 @@ RSpec.describe QuestionsController, type: :controller do
     end
 
     context 'multi question' do
-      let!(:question) { create(:multi_question, :with_4_choices) }
+      let!(:question) { create(:multi_question) }
       let!(:question_as_json) { question.to_json }
 
       it 'assigns question and renders question as json' do
