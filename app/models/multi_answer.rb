@@ -1,5 +1,4 @@
 class MultiAnswer < Answer
-  belongs_to :choice
   validates :choice_id, presence: true
 
   def self.result(question_id)
