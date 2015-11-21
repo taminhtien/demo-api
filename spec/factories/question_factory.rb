@@ -3,14 +3,10 @@ FactoryGirl.define do
     title 'Best question'
   end
 
-  factory :text_question do
-    title 'Best question'
-    type :TextQuestion
+  factory :text_question, parent: :question, class: 'TextQuestion' do
   end
 
-  factory :multi_question do
-    title 'Best question'
-    type :MultiQuestion
+  factory :multi_question, parent: :question, class: 'MultiQuestion' do
     trait :with_4_choices do 
       after(:create) do |question|
         create_list(:choice, 4, question: question)
