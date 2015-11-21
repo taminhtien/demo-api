@@ -5,10 +5,14 @@ class AnswersController < ApplicationController
     @question = Question.find(question_id)
 
     case @question.type
-    when 'TextQuestion'
-      @answer = @question.answers.create(text_answer_params)  
+      when 'TextQuestion'
+        @answer = @question.answers.create(text_answer_params)
+      when 'MultiQuestion'
+        @answer = @question.answers.create(multi_answer_params) 
+      else
+        @answer = @question.answers.create(text_answer_params) 
     end
-
+    
     if @answer.save
       render json: @answer, status: :created
     else
@@ -24,5 +28,9 @@ class AnswersController < ApplicationController
 
     def text_answer_params
       params.require(:answer).permit(:text_answer, :device_id).merge(type: 'TextAnswer')
+    end
+
+    def multi_answer_params
+      params.require(:answer).permit(:choice_id, :device_id).merge(type: 'MultiAnswer')
     end
 end
