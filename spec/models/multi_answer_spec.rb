@@ -17,7 +17,7 @@ RSpec.describe MultiAnswer, type: :model do
     let!(:python_answers) { create_list(:multi_answer, 2, question: question, choice_id: python.id) }
     let!(:expected)       { [{ ruby.id => 0.6 }, { python.id => 0.4 }] }
     
-    it "returns an desirable json containing percentages of each choices" do
+    it 'returns an desirable json containing percentages of each choices' do
       expect(MultiAnswer.result(question.id)).to eq expected
     end
   end

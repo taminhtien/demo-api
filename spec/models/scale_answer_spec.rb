@@ -11,7 +11,7 @@ RSpec.describe ScaleAnswer, type: :model do
     let!(:second_answers)   { create(:scale_answer, question: question, value: 90) }
     let!(:expected)         { { total: 2, average: 50 } }
     
-    it "returns an average number of all scale answer" do
+    it 'returns an average number of all scale answer' do
       expect(ScaleAnswer.result(question.id)).to eq expected
     end
   end
