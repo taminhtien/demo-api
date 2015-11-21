@@ -10,7 +10,7 @@ RSpec.describe TextAnswer, type: :model do
   end
 
   describe '.result' do
-    let!(:question) { create(:question) }
+    let!(:question) { create(:text_question) }
     let!(:text_answers) { create_list(:text_answer, 3, question: question) }
     
     it "returns an array of text answer" do
