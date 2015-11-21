@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151119160604) do
+ActiveRecord::Schema.define(version: 20151121064809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20151119160604) do
     t.string   "text_answer"
     t.integer  "device_id"
     t.integer  "choice_id"
+    t.integer  "value"
   end
 
   add_index "answers", ["device_id"], name: "index_answers_on_device_id", using: :btree
