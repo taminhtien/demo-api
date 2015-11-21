@@ -9,6 +9,8 @@ class AnswersController < ApplicationController
         @answer = @question.answers.create(text_answer_params)
       when 'MultiQuestion'
         @answer = @question.answers.create(multi_answer_params) 
+      when 'ScaleQuestion'
+        @answer = @question.answers.create(scale_answer_params) 
       else
         @answer = @question.answers.create(text_answer_params) 
     end
@@ -32,5 +34,9 @@ class AnswersController < ApplicationController
 
     def multi_answer_params
       params.require(:answer).permit(:choice_id, :device_id).merge(type: 'MultiAnswer')
+    end
+
+    def scale_answer_params
+      params.require(:answer).permit(:value, :device_id).merge(type: 'ScaleAnswer')
     end
 end

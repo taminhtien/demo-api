@@ -54,5 +54,29 @@ RSpec.describe AnswersController, type: :controller do
         end
       end
     end
+
+    describe 'ScaleAnswer' do
+      let!(:question) { create(:scale_question) }
+      let!(:device) { create(:device) }
+      
+      context 'Success' do   
+        let!(:answer_params) { attributes_for(:scale_answer, device_id: device.id, value: 90) }
+        let(:expected_answer_as_json) { ScaleAnswer.last.to_json }
+
+        it 'creates an answer successfully' do
+          do_request
+          expect(response.body).to match expected_answer_as_json
+        end
+      end
+
+      context 'Failure' do
+        let!(:answer_params) { attributes_for(:scale_answer, device_id: device.id, value: '') }
+
+        it 'renders error message' do
+          do_request
+          expect(response.status).to eq 422
+        end
+      end
+    end
   end
 end
