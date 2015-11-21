@@ -14,7 +14,7 @@ RSpec.describe AnswersController, type: :controller do
         let!(:answer_params) { attributes_for(:text_answer, device_id: device.id ) }
         let(:expected_answer_as_json) { TextAnswer.last.to_json }
 
-        it 'creates successfully an answer' do
+        it 'creates an answer successfully' do
           do_request
           expect(response.body).to match expected_answer_as_json
         end
